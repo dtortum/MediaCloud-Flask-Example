@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+ {% extends "base.html" %}
 
 {% block title %}Search{% endblock %}
 
@@ -13,10 +13,16 @@
       <div class="form-group">
         <label for="keywords">Enter some keywords</label>
         <input type="text" class="form-control" id="keywords" name="keywords" placeholder="puppy">
+  
+        <label for="startdate">Enter start date </label>
+        <input type="date" class="form-control" id="startdate" name="startdate">
+ 
+        <label for="enddate">Enter an end date </label>
+        <input type="date" class="form-control" id="enddate" name="enddate">
+ 
       </div>
       <button type="submit" class="btn btn-default">Search</button>
     </form>
-  
   </div>
 
 </div>    

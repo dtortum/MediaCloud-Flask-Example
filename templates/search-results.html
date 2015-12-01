@@ -4,6 +4,47 @@
 
 {% block content %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+$(function () {
+	var weeks = {{ weeks|tojson }}
+	var mentions = {{ mentions }}
+    $('#chart').highcharts({
+        title: {
+            text: 'Weekly Mentions of the Keyword',
+            x: -20 //center
+        },
+        xAxis: {
+            categories: weeks
+        },
+        yAxis: {
+            title: {
+                text: 'Mentions'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Mentions',
+            data: mentions
+        }]
+    });
+});
+</script>  
+
 <div class="row">
 
   <div class="col-md-12">
@@ -12,7 +53,9 @@
 
     <p>You searched for "{{keywords}}"</p>
 
-    <p>In the US Mainstream Media online there have {{ sentenceCount }} sentences matching your search so far this year.</p>
+    <p>In the US Mainstream Media online there have {{ sentenceCount }} sentences matching your search from {{ startDate }} to {{ endDate }} </p>
+
+     <div id="chart" style="min-width: 250px; height: 300px; margin: 0 auto"></div>
 
   </div>
 
